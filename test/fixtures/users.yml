@@ -7,7 +7,7 @@
 eu:
   email: eu@mail.com
   encrypted_password: "$2a$10$lhJ4pnzBrfL.SwWPqmpBDOYbe1lMEVTdSAMpLrcGGSEGbtFJaQLO6"
-# column: value
 #
-# two: {}
-#  column: value
+voce:
+  email: voce@mail.com
+  encrypted_password: "$2a$10$lhJ4pnzBrfL.SwWPqmpBDOYbe1lMEVTdSAMpLrcGGSEGbtFJaQLO6"
