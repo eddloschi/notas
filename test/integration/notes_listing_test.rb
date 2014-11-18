@@ -26,6 +26,6 @@ class NotesListingTest < ActionDispatch::IntegrationTest
   test 'cor das notas' do
     note1 = notes(:one)
     visit '/'
-    assert page.all('div.note').first['style'] == "background-color: #{note1.color}"
+    assert page.all('div.note').first['style'].include? "background-color: #{note1.color}"
   end
 end
