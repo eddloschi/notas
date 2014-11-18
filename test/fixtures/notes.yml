@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: Nota1
+  body: Texto1
+  color: Gold
+  user: eu
+
+two:
+  title: Nota2
+  body: Texto2
+  color: Gold
+  user: voce
