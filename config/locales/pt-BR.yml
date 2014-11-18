@@ -1,0 +1,6 @@
+pt-BR:
+  actions:
+    create_note: Criar Nota
+    log_out: Sair
+  placeholders:
+    search_notes: Pesquisar nas notas
