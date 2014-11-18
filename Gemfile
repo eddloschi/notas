@@ -44,6 +44,7 @@ gem 'devise'
 gem 'devise-i18n'
 
 gem 'bootstrap-sass', group: :assets
+gem 'autoprefixer-rails', group: :assets
 
 gem 'mailcatcher', group: :development
 
