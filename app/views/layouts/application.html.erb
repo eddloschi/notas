@@ -22,7 +22,7 @@
         <a class="navbar-brand" href="#">Notas</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
-        <button type="button" class="btn btn-success navbar-btn navbar-left"><%= t('actions.create_note') %></button>
+        <%= link_to t('actions.create_note'), new_note_path , class: "btn btn-success navbar-btn navbar-left" %>
         <form class="navbar-form navbar-left" role="search">
           <div class="input-group">
             <input type="text" placeholder="<%= t('placeholders.search_notes') %>" class="form-control">
@@ -34,7 +34,7 @@
           </div>
         </form>
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to t('actions.log_out'), destroy_user_session_path, :method => :delete %></li>
+          <li><%= link_to t('actions.log_out'), destroy_user_session_path, method: :delete %></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>

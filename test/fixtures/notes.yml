@@ -11,3 +11,15 @@ two:
   body: Texto2
   color: Gold
   user: voce
+
+three:
+  title: Nota3
+  body: Texto3
+  color: Gold
+  user: eu
+
+four:
+  title: Nota4
+  body: Texto4
+  color: Gold
+  user: voce

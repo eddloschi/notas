@@ -1,6 +1,13 @@
 pt-BR:
   actions:
-    create_note: Criar Nota
+    create_note: Criar nota
     log_out: Sair
+    save_note: Salvar
+  errors:
+    save_note:
+      one: 1 erro
+      other: "#{count} erros"
   placeholders:
+    body: Texto
     search_notes: Pesquisar nas notas
+    title: Título

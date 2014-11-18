@@ -1,5 +1,5 @@
 class Note < ActiveRecord::Base
-    @allowed_colors = [
+  @allowed_colors = [
     "Gold",
     "LightGreen",
     "Pink",
@@ -10,4 +10,8 @@ class Note < ActiveRecord::Base
   validates :color, inclusion: { in: @allowed_colors }
 
   belongs_to :user
+
+  class << self
+    attr_reader :allowed_colors
+  end
 end
