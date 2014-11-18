@@ -1,0 +1,11 @@
+<div class="row">
+  <% @notes.each do |note| %>
+  <div class="col-md-4">
+    <div class="well well-sm note" style="background-color: <%= note.color %>">
+      <h3><%= note.title %></h3>
+      <hr>
+      <p><%= note.body %></p>
+    </div>
+  </div>
+  <% end %>
+</div>
