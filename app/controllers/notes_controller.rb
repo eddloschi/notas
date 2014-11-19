@@ -2,7 +2,7 @@ class NotesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @notes = Note.where(user: current_user)
+    @notes = Note.where(user: current_user).order(updated_at: :desc)
   end
 
   def new

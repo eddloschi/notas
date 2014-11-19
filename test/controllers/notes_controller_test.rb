@@ -16,6 +16,14 @@ class NotesControllerTest < ActionController::TestCase
     assert_not assigns(:notes).include? notes(:two)
   end
 
+  test 'index deve retornar a nota mais recente primeiro' do
+    note = Note.last
+    note.touch
+    note.save
+    get :index
+    assert assigns(:notes).first.updated_at > assigns(:notes).last.updated_at
+  end
+
   test 'new' do
     get :new
     assert_response :success
