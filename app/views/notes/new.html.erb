@@ -26,7 +26,7 @@
       <ul class="list-unstyled">
         <% Note.allowed_colors.each do |color| %>
         <li>
-          <a id="<%= color %>" href="#" class="btn" style="background-color: <%= color %>" onclick="change_color('<%= color %>')"></a>
+          <a id="<%= color %>" data-target="#" class="btn" style="background-color: <%= color %>" onclick="change_color('<%= color %>')"></a>
         </li>
         <% end %>
       </ul>
