@@ -49,3 +49,4 @@ gem 'autoprefixer-rails'
 gem 'mailcatcher', group: :development
 
 gem 'capybara', group: [:development, :test]
+gem 'capybara-webkit', group: [:development, :test]
