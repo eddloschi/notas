@@ -3,8 +3,40 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'capybara/rails'
 
+module JSHelper
+  def use_js
+    Capybara.current_driver = :webkit
+    @js = true
+  end
+
+  def teardown
+    super
+    if @js
+      Capybara.use_default_driver
+      @js = false
+    end
+  end
+end
+
+module SessionHelper
+  def log_in
+    user = users(:eu)
+    visit '/users/sign_in'
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: '12345678'
+    click_on 'Log in'
+  end
+
+  def teardown
+    super
+    Capybara.reset_sessions!
+  end
+end
+
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
+  include JSHelper
+  include SessionHelper
 end
 
 class ActiveSupport::TestCase
