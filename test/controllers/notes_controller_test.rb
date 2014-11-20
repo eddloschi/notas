@@ -129,4 +129,53 @@ class NotesControllerTest < ActionController::TestCase
       assert_response 422
     end
   end
+
+  test 'search' do
+    get :search, query: notes(:one).title
+    assert_response :success
+    assert_not_nil assigns(:notes)
+  end
+
+  test 'search deve buscar somente as notas do usuario atual' do
+    get :search, query: 'N'
+    assert_equal 2, assigns(:notes).count
+  end
+
+  test 'search deve buscar pelo titulo completo' do
+    get :search, query: notes(:one).title
+    assert_equal notes(:one), assigns(:notes).first
+  end
+
+  test 'search deve buscar pelo texto completo' do
+    get :search, query: notes(:one).body
+    assert_equal notes(:one), assigns(:notes).first
+  end
+
+  test 'search deve buscar pelo titulo parcial' do
+    get :search, query: notes(:one).title[0..2]
+    assert assigns(:notes).include? notes(:one)
+    assert assigns(:notes).include? notes(:three)
+  end
+
+  test 'search deve buscar pelo texto parcial' do
+    get :search, query: notes(:one).body[0..2]
+    assert assigns(:notes).include? notes(:one)
+    assert assigns(:notes).include? notes(:three)
+  end
+
+  test 'search deve retornar resultados de título e texto em notas diferentes' do
+    get :search, query: 'Busca'
+    assert assigns(:notes).include? notes(:one)
+    assert assigns(:notes).include? notes(:three)
+  end
+
+  test 'search deve colocar a quantidade de resultados no flash notice' do
+    get :search, query: notes(:one).title
+    assert_equal I18n.t('messages.n_notes_found', count: 1), flash[:notice]
+  end
+
+  test 'search deve colocar a mensagem de nenhum resultados no flash alert' do
+    get :search, query: 'abcd'
+    assert_equal I18n.t('messages.no_notes_found'), flash[:alert]
+  end
 end

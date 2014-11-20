@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: Nota1
+  title: Nota1 Busca
   body: Texto1
   color: Gold
   user: eu
@@ -14,7 +14,7 @@ two:
 
 three:
   title: Nota3
-  body: Texto3
+  body: Texto3 Busca
   color: Gold
   user: eu
 

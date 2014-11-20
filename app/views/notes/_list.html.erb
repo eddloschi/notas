@@ -1,0 +1,30 @@
+<div class="row notes">
+  <% @notes.each do |note| %>
+  <div class="note">
+    <div class="well well-sm" style="background-color: <%= note.color %>">
+      <div class="dropdown pull-right">
+        <button id="actions-<%= note.id %>" type="button" class="btn btn-link note-actions" data-toggle="dropdown"
+          aria-haspopup="true" role="button" aria-expanded="false" aria-label="Actions">
+          <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <li>
+            <%= link_to edit_note_path(note.id), id: "edit-#{note.id}" do %>
+            <span class="glyphicon glyphicon-pencil note-actions note-action"></span><%= t('actions.edit_note') %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to note_path(note), method: :delete, data: {confirm: t('messages.are_you_sure?')}, id: "delete-#{note.id}" do %>
+            <span class="glyphicon glyphicon-trash note-actions note-action"></span><%= t('actions.delete_note') %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+      <h4>
+        <strong><%= note.title %></strong>
+      </h4>
+      <p><%= simple_format note.body %></p>
+    </div>
+  </div>
+  <% end %>
+</div>

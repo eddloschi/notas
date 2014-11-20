@@ -8,9 +8,13 @@ pt-BR:
   errors:
     save_note:
       one: 1 erro
-      other: "#{count} erros"
+      other: "%{count} erros"
   messages:
     are_you_sure?: Tem certeza?
+    n_notes_found:
+      one: 1 nota encontrada
+      other: "%{count} notas encontradas"
+    no_notes_found: Nenhuma nota encontrada :-(
   placeholders:
     body: Texto
     search_notes: Pesquisar nas notas
