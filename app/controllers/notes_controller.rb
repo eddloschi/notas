@@ -31,6 +31,16 @@ class NotesController < ApplicationController
     end
   end
 
+  def destroy
+    @note = Note.find(params[:id])
+    if @note.destroy
+      redirect_to notes_path
+    else
+      flash[:alert] = @note.errors.full_messages.join('\n')
+      redirect_to notes_path, status: 422
+    end
+  end
+
   private
 
   def note_params

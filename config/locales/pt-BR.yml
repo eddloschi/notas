@@ -1,6 +1,7 @@
 pt-BR:
   actions:
     create_note: Criar nota
+    delete_note: Excluir
     edit_note: Editar
     log_out: Sair
     save_note: Salvar
@@ -8,6 +9,8 @@ pt-BR:
     save_note:
       one: 1 erro
       other: "#{count} erros"
+  messages:
+    are_you_sure?: Tem certeza?
   placeholders:
     body: Texto
     search_notes: Pesquisar nas notas

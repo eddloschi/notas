@@ -102,4 +102,31 @@ class NotesControllerTest < ActionController::TestCase
   test 'update deve disparar uma exceção se a nota não for encontrada' do
     assert_raises(ActiveRecord::RecordNotFound) { patch :update, id: 1 }
   end
+
+  test 'destroy' do
+    delete :destroy, id: notes(:one).id
+    assert_redirected_to controller: 'notes', action: 'index'
+  end
+
+  test 'destroy deve excluir a nota' do
+    assert_difference('Note.count', -1) { delete :destroy, id: notes(:one).id }
+  end
+
+  test 'destroy deve disparar uma exceção se a nota não for encontrada' do
+    assert_raises(ActiveRecord::RecordNotFound) { delete :destroy, id: 1 }
+  end
+
+  test 'destroy deve colocar as mensagens de erro no flash alert' do
+    note = MiniTest::Mock.new
+    errors = MiniTest::Mock.new
+    note.expect :id, notes(:one).id
+    note.expect :destroy, false
+    note.expect :errors, errors
+    errors.expect :full_messages, ['error']
+    Note.stub :find, note do
+      delete :destroy, id: notes(:one).id
+      assert_not_nil flash[:alert]
+      assert_response 422
+    end
+  end
 end
