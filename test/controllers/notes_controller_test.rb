@@ -37,7 +37,7 @@ class NotesControllerTest < ActionController::TestCase
 
   test 'nova nota deve ser gold por padrão' do
     get :new
-    assert assigns(:note).color == 'Gold'
+    assert 'Gold', assigns(:note).color
   end
 
   test 'create' do
@@ -59,5 +59,47 @@ class NotesControllerTest < ActionController::TestCase
   test 'create deve retornar 422 em caso de erro' do
     post :create, note: {title: 'Note', color: 'Gold'}
     assert_response 422
+  end
+
+  test 'edit' do
+    get :edit, id: notes(:one).id
+    assert_response :success
+    assert_not_nil assigns(:note)
+  end
+
+  test 'edit deve retornar a nota correta para ser editada' do
+    get :edit, id: notes(:one).id
+    assert_equal notes(:one), assigns(:note)
+  end
+
+  test 'edit deve disparar uma exceção se a nota não for encontrada' do
+    assert_raises(ActiveRecord::RecordNotFound) { get :edit, id: 1 }
+  end
+
+  test 'update' do
+    patch :update, id: notes(:one).id, note: {title: 'Update Note', body: 'Update Text', color: 'Pink'}
+    assert_redirected_to controller: 'notes', action: 'index'
+  end
+
+  test 'update deve atualizar a nota' do
+    patch :update, id: notes(:one).id, note: {title: 'Update Note', body: 'Update Text', color: 'Pink'}
+    notes(:one).reload
+    assert_equal 'Update Note', notes(:one).title
+    assert_equal 'Update Text', notes(:one).body
+    assert_equal 'Pink', notes(:one).color
+  end
+
+  test 'update deve renderizar o formulario de edição novamente em caso de erro' do
+    patch :update, id: notes(:one).id, note: {title: 'Update Note', body: '', color: 'Pink'}
+    assert_template :edit
+  end
+
+  test 'update deve retornar 422 em caso de erro' do
+    patch :update, id: notes(:one).id, note: {title: 'Update Note', body: '', color: 'Pink'}
+    assert_response 422
+  end
+
+  test 'update deve disparar uma exceção se a nota não for encontrada' do
+    assert_raises(ActiveRecord::RecordNotFound) { patch :update, id: 1 }
   end
 end

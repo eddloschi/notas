@@ -16,7 +16,16 @@
   }
 
   .well {
-    position:relative;
+    position: relative;
     display: block;
+  }
+
+  .note-actions {
+    color: DarkGray;
+  }
+
+  .note-action {
+    color: DarkGray;
+    margin-right: 8px;
   }
 }

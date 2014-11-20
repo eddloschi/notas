@@ -1,6 +1,7 @@
 pt-BR:
   actions:
     create_note: Criar nota
+    edit_note: Editar
     log_out: Sair
     save_note: Salvar
   errors:
