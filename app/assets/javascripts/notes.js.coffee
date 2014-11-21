@@ -3,5 +3,5 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 @change_color = (color) ->
-  $('#note-card').css('background-color', color)
-  $('input[name="note[color]"]').val(color)
+  $('#note-card').css 'background-color', color
+  $('input[name="note[color]"]').val color
