@@ -43,7 +43,8 @@ class NotesController < ApplicationController
 
   def search
     @notes = Note.where(user: current_user)
-      .where(' notes.title like ? or notes.body like ?', "%#{params[:query]}%", "%#{params[:query]}%")
+      .where(' notes.title LIKE ? OR notes.body LIKE ?',
+        "%#{params[:query]}%", "%#{params[:query]}%")
       .order(updated_at: :desc)
     if @notes.count > 0
       flash.now[:notice] = I18n.t('messages.n_notes_found', count: @notes.count)
