@@ -14,7 +14,7 @@ class NotesController < ApplicationController
     if @note.save
       redirect_to notes_path
     else
-      render :new, status: 422
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -27,7 +27,7 @@ class NotesController < ApplicationController
     if @note.update(note_params)
       redirect_to notes_path
     else
-      render :edit, status: 422
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -36,8 +36,8 @@ class NotesController < ApplicationController
     if @note.destroy
       redirect_to notes_path
     else
-      flash[:alert] = @note.errors.full_messages.join('\n')
-      redirect_to notes_path, status: 422
+      flash[:alert] = I18n.t('errors.delete_note')
+      redirect_to notes_path, status: :unprocessable_entity
     end
   end
 

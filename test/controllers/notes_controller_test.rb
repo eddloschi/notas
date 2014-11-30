@@ -56,9 +56,9 @@ class NotesControllerTest < ActionController::TestCase
     assert_template :new
   end
 
-  test 'create deve retornar 422 em caso de erro' do
+  test 'create deve retornar um erro se a nota não for salva' do
     post :create, note: {title: 'Note', color: 'Gold'}
-    assert_response 422
+    assert_response :unprocessable_entity
   end
 
   test 'edit' do
@@ -94,9 +94,9 @@ class NotesControllerTest < ActionController::TestCase
     assert_template :edit
   end
 
-  test 'update deve retornar 422 em caso de erro' do
+  test 'update deve retornar um erro se a nota não for salva' do
     patch :update, id: notes(:one).id, note: {title: 'Update Note', body: '', color: 'Pink'}
-    assert_response 422
+    assert_response :unprocessable_entity
   end
 
   test 'update deve disparar uma exceção se a nota não for encontrada' do
@@ -125,8 +125,8 @@ class NotesControllerTest < ActionController::TestCase
     errors.expect :full_messages, ['error']
     Note.stub :find, note do
       delete :destroy, id: notes(:one).id
-      assert_not_nil flash[:alert]
-      assert_response 422
+      assert_equal I18n.t('errors.delete_note'), flash[:alert]
+      assert_response :unprocessable_entity
     end
   end
 
