@@ -22,10 +22,9 @@
 
   .note-actions {
     color: DarkGray;
-  }
 
-  .note-action {
-    color: DarkGray;
-    margin-right: 8px;
+    &.note-action {
+      margin-right: 8px;
+    }
   }
 }
