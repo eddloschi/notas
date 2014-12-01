@@ -76,6 +76,12 @@ class NotesControllerTest < ActionController::TestCase
     assert_raises(ActiveRecord::RecordNotFound) { get :edit, id: 1 }
   end
 
+  test 'edit não deve permitir a edição de notas de outro usuário' do
+    get :edit, id: notes(:two).id
+    assert_redirected_to notes_path
+    assert_not_nil flash[:alert]
+  end
+
   test 'update' do
     patch :update, id: notes(:one).id, note: {title: 'Update Note', body: 'Update Text', color: 'Pink'}
     assert_redirected_to controller: 'notes', action: 'index'
@@ -103,6 +109,12 @@ class NotesControllerTest < ActionController::TestCase
     assert_raises(ActiveRecord::RecordNotFound) { patch :update, id: 1 }
   end
 
+  test 'update não deve permitir atualizar a nota de outro usuário' do
+    patch :update, id: notes(:two).id, note: {title: 'Update Note', body: 'Update Text', color: 'Pink'}
+    assert_redirected_to notes_path
+    assert_not_nil flash[:alert]
+  end
+
   test 'destroy' do
     delete :destroy, id: notes(:one).id
     assert_redirected_to controller: 'notes', action: 'index'
@@ -114,6 +126,12 @@ class NotesControllerTest < ActionController::TestCase
 
   test 'destroy deve disparar uma exceção se a nota não for encontrada' do
     assert_raises(ActiveRecord::RecordNotFound) { delete :destroy, id: 1 }
+  end
+
+  test 'destroy não deve permitir excluir a nota de outro usuário' do
+    delete :destroy, id: notes(:two).id
+    assert_redirected_to notes_path
+    assert_not_nil flash[:alert]
   end
 
   test 'search' do
