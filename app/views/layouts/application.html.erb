@@ -10,11 +10,11 @@
 </head>
 <body>
   <% if user_signed_in? %>
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
+        <button type="button" class="navbar-toggle collapsed"
+          data-toggle="collapse" data-target="#navbar">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -22,13 +22,13 @@
         <%= link_to 'Notas', notes_path , class: "navbar-brand" %>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
-        <%= link_to t('actions.create_note'), new_note_path , class: "btn btn-success navbar-btn navbar-left" %>
-        <%= form_tag search_notes_path, method: :get, class: 'navbar-form navbar-left', role: 'search' do %>
+        <%= link_to t('actions.create_note'), new_note_path, class: "btn btn-success navbar-btn navbar-left" %>
+        <%= form_tag search_notes_path, method: :get, class: 'navbar-form navbar-left' do %>
         <div class="input-group">
           <%= text_field_tag :query, params[:query], class: 'form-control', placeholder: t('placeholders.search_notes') %>
           <span class="input-group-btn">
             <%= button_tag id: 'search', type: 'submit', class: 'btn btn-primary', name: nil do %>
-              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-search"></span>
             <% end %>
           </span>
         </div>
@@ -40,22 +40,24 @@
     </div>
   </nav>
   <% end %>
-
   <div class="container">
     <% if flash[:notice] %>
-    <div class="alert alert-success alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <div class="alert alert-success alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert">
+        <span>&times;</span>
+      </button>
       <%= simple_format flash[:notice] %>
     </div>
     <% end %>
     <% if flash[:alert] %>
-    <div class="alert alert-danger alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <div class="alert alert-danger alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert">
+        <span>&times;</span>
+      </button>
       <%= simple_format flash[:alert] %>
     </div>
     <% end %>
     <%= yield %>
   </div>
-
 </body>
 </html>

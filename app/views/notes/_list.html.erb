@@ -3,11 +3,11 @@
   <div class="note">
     <div class="well well-sm" style="background-color: <%= note.color %>">
       <div class="dropdown pull-right">
-        <button id="actions-<%= note.id %>" type="button" class="btn btn-link note-actions" data-toggle="dropdown"
-          aria-haspopup="true" role="button" aria-expanded="false" aria-label="Actions">
-          <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        <button id="actions-<%= note.id %>" type="button"
+          class="btn btn-link note-actions" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-cog"></span>
         </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <ul class="dropdown-menu">
           <li>
             <%= link_to edit_note_path(note.id), id: "edit-#{note.id}" do %>
             <span class="glyphicon glyphicon-pencil note-actions note-action"></span><%= t('actions.edit_note') %>
