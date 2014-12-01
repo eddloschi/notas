@@ -6,6 +6,7 @@ pt-BR:
     log_out: Sair
     save_note: Salvar
   errors:
+    delete_note: Não foi possível excluir a nota
     save_note:
       one: 1 erro
       other: "%{count} erros"
