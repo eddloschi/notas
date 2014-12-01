@@ -21,9 +21,8 @@ end
 
 module SessionHelper
   def log_in
-    user = users(:eu)
     visit '/users/sign_in'
-    fill_in 'Email', with: user.email
+    fill_in 'Email', with: users(:eu).email
     fill_in 'Password', with: '12345678'
     click_on 'Log in'
   end
