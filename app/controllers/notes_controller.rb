@@ -1,5 +1,6 @@
 class NotesController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource only: [:edit, :update, :destroy]
 
   def index
     @notes = Note.where(user: current_user).order(updated_at: :desc)
@@ -19,11 +20,9 @@ class NotesController < ApplicationController
   end
 
   def edit
-    @note = Note.find(params[:id])
   end
 
   def update
-    @note = Note.find(params[:id])
     if @note.update(note_params)
       redirect_to notes_path
     else
@@ -32,7 +31,6 @@ class NotesController < ApplicationController
   end
 
   def destroy
-    @note = Note.find(params[:id])
     if @note.destroy
       redirect_to notes_path
     else
