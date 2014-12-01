@@ -35,7 +35,7 @@ class NotesControllerTest < ActionController::TestCase
     assert_not assigns(:note).persisted?
   end
 
-  test 'nova nota deve ser gold por padrão' do
+  test 'nova nota deve ser dourada por padrão' do
     get :new
     assert 'Gold', assigns(:note).color
   end

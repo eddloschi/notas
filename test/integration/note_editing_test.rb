@@ -13,7 +13,8 @@ class NoteEditingTest < ActionDispatch::IntegrationTest
     click_on I18n.t('actions.save_note')
     assert page.has_content?('Nova Nota'), 'Título não encontrado'
     assert page.has_content?('Novo Texto'), 'Texto não encontrado'
-    assert page.all('.note .well').first['style'].include?("background-color: SkyBlue"), "Cor errada"
+    assert page.all('.note .well').first['style']
+      .include?("background-color: SkyBlue"), "Cor errada"
   end
 
   test 'erro na criação de nota' do

@@ -9,7 +9,7 @@ class NoteTest < ActiveSupport::TestCase
 
   test "deve ter uma cor válida" do
     n = notes(:one)
-    n.color = "Black"
+    n.color = 'Black'
     assert_not n.save
   end
 end
