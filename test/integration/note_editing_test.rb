@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class NoteEditingTest < ActionDispatch::IntegrationTest
-  test 'editação de nota' do
+  test 'edição de nota' do
     use_js
     log_in
     visit '/'
@@ -14,10 +14,10 @@ class NoteEditingTest < ActionDispatch::IntegrationTest
     assert page.has_content?('Nova Nota'), 'Título não encontrado'
     assert page.has_content?('Novo Texto'), 'Texto não encontrado'
     assert page.all('.note .well').first['style']
-      .include?("background-color: SkyBlue"), "Cor errada"
+      .include?('background-color: SkyBlue'), 'Cor errada'
   end
 
-  test 'erro na criação de nota' do
+  test 'erro na edição de nota' do
     use_js
     log_in
     visit '/'
