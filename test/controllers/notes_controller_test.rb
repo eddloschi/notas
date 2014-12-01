@@ -116,20 +116,6 @@ class NotesControllerTest < ActionController::TestCase
     assert_raises(ActiveRecord::RecordNotFound) { delete :destroy, id: 1 }
   end
 
-  test 'destroy deve colocar as mensagens de erro no flash alert' do
-    note = MiniTest::Mock.new
-    errors = MiniTest::Mock.new
-    note.expect :id, notes(:one).id
-    note.expect :destroy, false
-    note.expect :errors, errors
-    errors.expect :full_messages, ['error']
-    Note.stub :find, note do
-      delete :destroy, id: notes(:one).id
-      assert_equal I18n.t('errors.delete_note'), flash[:alert]
-      assert_response :unprocessable_entity
-    end
-  end
-
   test 'search' do
     get :search, query: notes(:one).title
     assert_response :success
