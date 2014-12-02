@@ -38,7 +38,7 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
+gem 'rails-i18n', git: 'https://github.com/svenfuchs/rails-i18n.git', branch: 'master'
 
 gem 'devise'
 gem 'devise-i18n'
